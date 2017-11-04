@@ -1,8 +1,6 @@
-package pl.akalkowski.demo.repository;
+package pl.akalkowski.demo.repositories;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
-import pl.akalkowski.demo.model.Gif;
+import pl.akalkowski.demo.models.Gif;
 
 import java.util.ArrayList;
 import java.util.List;
