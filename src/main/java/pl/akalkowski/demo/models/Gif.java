@@ -1,4 +1,4 @@
-package pl.akalkowski.demo.model;
+package pl.akalkowski.demo.models;
 
 import org.springframework.stereotype.Component;
 
