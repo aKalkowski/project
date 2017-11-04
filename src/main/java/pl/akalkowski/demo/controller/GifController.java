@@ -19,9 +19,5 @@ public class GifController {
         modelMap.addAttribute( "gifs", gifRepository.findAll() );
         return "home";
     }
-//    @GetMapping("/favorites")
-//    String favourite(ModelMap modelMap){
-//        modelMap.addAttribute( "gifs",gifRepository.findAll() );
-//        return "favorites";
-//    }
+
 }
