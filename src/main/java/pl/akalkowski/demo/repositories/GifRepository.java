@@ -19,7 +19,6 @@ public class GifRepository {
         for (Gif gif : gifs) {
             if (gif.isFavorite()) {
                 favuriteGif().add( gif );
-
             }
         }
         return favuriteGif();
@@ -27,9 +26,15 @@ public class GifRepository {
 
     public List<Gif> findAll() {
         return gifs;
-
     }
 
+    public List<Gif> findByName(String name) {
+        List<Gif> gifList = new ArrayList<>();
+        for (Gif gif : gifs) {
+            if (gif.getName().contains( name )) {
+                gifList.add( gif );
+            }
+        }
+        return  gifList;
+    }
 }
-
-
