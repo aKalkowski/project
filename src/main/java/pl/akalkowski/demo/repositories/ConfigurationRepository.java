@@ -24,11 +24,11 @@ public class ConfigurationRepository{
     public GifRepository gifRepository(){
         GifRepository gifRepository = new GifRepository();
         gifRepository.add( new Gif( 1L, "android-explosion", true) );
-        gifRepository.add( new Gif( 2L, "ben-and-mike", false) );
-        gifRepository.add( new Gif( 3L, "book-dominos", false) );
-        gifRepository.add( new Gif( 4L, "compiler-bot", true) );
-        gifRepository.add( new Gif( 5L, "cowboy-coder", false) );
-        gifRepository.add( new Gif( 6L, "infinite-andrew", false) );
+        gifRepository.add( new Gif( 2L, "ben-and-mike",  false) );
+        gifRepository.add( new Gif( 3L, "book-dominos",  false) );
+        gifRepository.add( new Gif( 4L, "compiler-bot",  true) );
+        gifRepository.add( new Gif( 5L, "cowboy-coder",  false) );
+        gifRepository.add( new Gif( 6L, "infinite-andrew",  false) );
         return gifRepository;
     }
 

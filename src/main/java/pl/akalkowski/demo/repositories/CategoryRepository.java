@@ -11,8 +11,20 @@ public class CategoryRepository {
 
     public List<Category> categories= new ArrayList<>();
 
+    public Category category;
+
     public List<Category> showAll() {
         return categories;
+    }
+
+    public List<Category> findByName(String categoryName) {
+        List<Category> categoryList = new ArrayList<>();
+        for (Category c : categories) {
+            if (c.getName().contains(categoryName)) {
+                categoryList.add(c);
+            }
+        }
+        return categoryList;
     }
 
     public void add(Category category) {

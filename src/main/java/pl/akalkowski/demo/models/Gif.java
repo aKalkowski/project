@@ -12,12 +12,14 @@ public class Gif {
     public boolean favorite;
 
 
+
     public Gif() {
     }
 
-    public Gif(Long id, String name, boolean favorite) {
+    public Gif(Long id, String name,  boolean favorite) {
         this.id = id;
         this.name = name;
+
         this.favorite = favorite;
     }
 
@@ -28,6 +30,7 @@ public class Gif {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getName() {
         return name;
