@@ -12,23 +12,23 @@ public class ConfigurationRepository{
     public CategoryRepository categoryRepository() {
         CategoryRepository categoryRepository = new CategoryRepository();
 
-        categoryRepository.add(new Category(1, "mems"));
-        categoryRepository.add(new Category(2, "android"));
-        categoryRepository.add(new Category(3, "sport"));
-        categoryRepository.add(new Category(4, "funny"));
+        categoryRepository.add(new Category(1L, "mems"));
+        categoryRepository.add(new Category(2L, "android"));
+        categoryRepository.add(new Category(3L, "sport"));
+        categoryRepository.add(new Category(4L, "funny"));
 
         return categoryRepository;
     }
 
     @Bean
-    public GifRepository gifRepository(){
+    public GifRepository gifRepository(CategoryRepository categoryRepository){
         GifRepository gifRepository = new GifRepository();
-        gifRepository.add( new Gif( 1L, "android-explosion", true) );
-        gifRepository.add( new Gif( 2L, "ben-and-mike", false) );
-        gifRepository.add( new Gif( 3L, "book-dominos", false) );
-        gifRepository.add( new Gif( 4L, "compiler-bot", true) );
-        gifRepository.add( new Gif( 5L, "cowboy-coder", false) );
-        gifRepository.add( new Gif( 6L, "infinite-andrew", false) );
+        gifRepository.add( new Gif( 1L, "android-explosion", true , categoryRepository.findById( 1L )) );
+        gifRepository.add( new Gif( 2L, "ben-and-mike", false,categoryRepository.findById( 4L )) );
+        gifRepository.add( new Gif( 3L, "book-dominos", false,categoryRepository.findById( 4L ) ));
+        gifRepository.add( new Gif( 4L, "compiler-bot", true,categoryRepository.findById( 2L )) );
+        gifRepository.add( new Gif( 5L, "cowboy-coder", false,categoryRepository.findById( 3L )) );
+        gifRepository.add( new Gif( 6L, "infinite-andrew", false,categoryRepository.findById( 2L )) );
         return gifRepository;
     }
 
