@@ -1,23 +1,39 @@
 package pl.akalkowski.demo.models;
 
-public class Category {
+import org.hibernate.annotations.Generated;
+import org.springframework.beans.factory.annotation.Autowired;
+import pl.akalkowski.demo.form.CategoryForm;
+import pl.akalkowski.demo.repositories.CategoryRepository;
 
-    int id;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "category")
+public class Category {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Integer id;
     String name;
 
     public Category() {
     }
+    public Category(String name){
+        this.name=name;
+    }
+    public Category(CategoryForm form){
+        name=form.getName();
+    }
 
-    public Category(int id, String name) {
+    public Category(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
