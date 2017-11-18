@@ -4,30 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.akalkowski.demo.form.CategoryForm;
 import pl.akalkowski.demo.models.Category;
-import pl.akalkowski.demo.repositories.CategoryCrudrepository;
-import pl.akalkowski.demo.repositories.CategoryRepository;
+import pl.akalkowski.demo.repositories.CategoryCRUDRepository;
 import pl.akalkowski.demo.repositories.GifRepository;
-
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/categories")
 public class CategoryController {
 
     @Autowired
-    CategoryCrudrepository categoryCrudrepository;
+    CategoryCRUDRepository categoryCRUDRepository;
     @Autowired
     GifRepository gifRepository;
 
     @GetMapping("")
     public String showAllCategories(ModelMap modelMap) {
-        modelMap.addAttribute("categories", categoryCrudrepository.findAll());
+        modelMap.addAttribute("categories", categoryCRUDRepository.findAll());
         return "categories";
     }
 //    @GetMapping("/category/{id}")
@@ -55,13 +49,10 @@ public class CategoryController {
     @PostMapping("/addcategory")
     public String addCategory(@RequestParam("name") String name, Model model)
     {
-        categoryCrudrepository.save(new Category(name));
+        categoryCRUDRepository.save(new Category(name));
         System.out.println();
         System.out.println("Dodano nową kategorie");
         return "add-category";
     }
-
-
-
     }
 
