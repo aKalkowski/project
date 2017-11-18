@@ -50,10 +50,10 @@ public class GifRepository {
 //        } );
 //        return gifsByCategory;
 
-    public List<Gif> allGifsByCategory(Category category) {
+    public List<Gif> getGifsByCategoryId(Long categoryId) {
         List<Gif> categoryGif = new ArrayList<>();
         for (Gif gif : gifs) {
-            if (gif.getCategory().equals(category)) {
+            if (gif.getCategory().getId().equals(categoryId)) {
                 categoryGif.add(gif);
             }
         }

@@ -38,7 +38,7 @@ public class CategoryRepository {
         }
         return new Category();
     }
-    public Integer getLastId(){
+    public Long getLastId(){
         return categories.get(categories.size()+1).getId();
     }
 
