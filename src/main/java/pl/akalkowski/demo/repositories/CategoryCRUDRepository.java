@@ -12,8 +12,4 @@ import java.util.List;
 @Repository
 public interface CategoryCRUDRepository extends CrudRepository<Category,Long> {
     public List<Category> findAll();
-
-
-
-
 }

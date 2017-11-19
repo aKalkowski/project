@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.akalkowski.demo.form.CategoryForm;
 import pl.akalkowski.demo.models.Category;
 import pl.akalkowski.demo.repositories.CategoryCRUDRepository;
+import pl.akalkowski.demo.repositories.CategoryRepository;
 import pl.akalkowski.demo.repositories.GifRepository;
 
 @Controller
@@ -17,14 +18,15 @@ public class CategoryController {
     @Autowired
     CategoryCRUDRepository categoryCRUDRepository;
     @Autowired
-    GifRepository gifRepository;
+    CategoryRepository categoryRepository;
 
     @GetMapping("")
     public String showAllCategories(ModelMap modelMap) {
         modelMap.addAttribute("categories", categoryCRUDRepository.findAll());
         return "categories";
     }
-//    @GetMapping("/category/{id}")
+
+    //    @GetMapping("/category/{id}")
 //    String c(@PathVariable Long id, ModelMap modelMap){
 //        modelMap.addAttribute( "category", categoryRepository.findById( id ) );
 //
@@ -42,17 +44,29 @@ public class CategoryController {
 //        }
 //    return "categories";
     @GetMapping("addcategory")
-    public String addCategory(Model model){
-        model.addAttribute( "name", new CategoryForm(  ) );
+    public String addCategory(Model model) {
+        model.addAttribute("name", new CategoryForm());
         return "add-category";
     }
+
     @PostMapping("/addcategory")
-    public String addCategory(@RequestParam("name") String name, Model model)
-    {
+    public String addCategory(@RequestParam("name") String name, Model model) {
         categoryCRUDRepository.save(new Category(name));
         System.out.println();
         System.out.println("Dodano nową kategorie");
         return "add-category";
     }
+
+    @GetMapping("/")
+    String search(@RequestParam(value = "q", required = false) String q, ModelMap modelMap) {
+        if (q != null) {
+            modelMap.addAttribute( "categories", categoryRepository.findByName( q ) );
+        }
+        else
+        {
+            modelMap.addAttribute( "categories", categoryRepository.showAll() );
+        }
+        return "categories";
     }
+}
 
