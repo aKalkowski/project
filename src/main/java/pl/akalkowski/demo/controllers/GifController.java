@@ -2,6 +2,7 @@ package pl.akalkowski.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,18 +21,17 @@ public class GifController {
     @GetMapping("/")
     String search(@RequestParam(value = "q", required = false) String q, ModelMap modelMap) {
         if (q != null) {
-            modelMap.addAttribute( "gifs", gifRepository.findByName( q ) );
-        }
-        else
-            {
-            modelMap.addAttribute( "gifs", gifRepository.findAll() );
+            modelMap.addAttribute("gifs", gifRepository.findByName(q));
+        } else {
+            modelMap.addAttribute("gifs", gifRepository.findAll());
         }
         return "home";
     }
+
     @GetMapping("/category/{id}")
-    String mems(@PathVariable Long id, ModelMap modelMap){
-        modelMap.addAttribute( "gifs", gifRepository.getGifsByCategoryId(
-                id ) );
+    String mems(@PathVariable Long id, ModelMap modelMap) {
+        modelMap.addAttribute("gifs", gifRepository.getGifsByCategoryId(
+                id));
         return "home";
 
     }
@@ -42,4 +42,9 @@ public class GifController {
         return "favorites";
     }
 
+    @GetMapping("/gif/{name}")
+    String meme(@PathVariable String name, Model model) {
+        model.addAttribute("gif", gifRepository.getGifByName(name));
+        return "gif-details";
+    }
 }

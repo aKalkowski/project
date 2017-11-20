@@ -59,4 +59,12 @@ public class GifRepository {
         }
         return categoryGif;
     }
+
+    public Gif getGifByName(String name) {
+        for(Gif gif : gifs) {
+            if (gif.getName().equals(name));
+            return gif;
+        }
+        return null;
+    }
 }
